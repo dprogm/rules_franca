@@ -1,0 +1,8 @@
+package org.example
+
+typeCollection CommonTypes {
+  struct Message {
+    String header
+    String content
+  }
+}

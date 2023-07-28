@@ -1,0 +1,9 @@
+load("//rules:franca_library.bzl", "franca_library")
+
+franca_library(
+  name = "hello_world",
+  srcs = [
+    "interface/HelloWorld.fidl",
+    "types/CommonTypes.fidl",
+  ]
+)

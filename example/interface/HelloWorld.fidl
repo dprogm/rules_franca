@@ -1,0 +1,16 @@
+package org.example
+
+import model "../types/CommonTypes.fidl"
+
+interface HelloWorld {
+  version { major 1 minor 0 }
+
+  method request {
+    in {
+      org.example.CommonTypes.Message req
+    }
+    out {
+      org.example.CommonTypes.Message res
+    }
+  }
+}

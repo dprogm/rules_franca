@@ -1,3 +1,7 @@
+[![CI](https://github.com/dprogm/rules_franca/actions/workflows/main.yaml/badge.svg)](https://github.com/dprogm/rules_franca/actions/workflows/main.yaml)
+
+# Rules Franca
+
 Provides bazel rules that enable an easy workflow for tasks related to Franca IDL.
 
 * Group related `*.fidl` files into a `franca_library` target
