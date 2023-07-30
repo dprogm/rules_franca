@@ -5,4 +5,5 @@ sh_binary(
     "@com_github_covesa_capicxx_core_tools//:generator_bin",
   ],
   args = ["$(locations @com_github_covesa_capicxx_core_tools//:generator_bin)"],
+  visibility = ["//visibility:public"]
 )

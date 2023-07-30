@@ -1,9 +1,24 @@
-load("//rules:franca_library.bzl", "franca_library")
+load("//rules:defs.bzl", "franca_library", "franca_transform")
 
 franca_library(
   name = "hello_world",
   srcs = [
     "interface/HelloWorld.fidl",
     "types/CommonTypes.fidl",
+  ]
+)
+
+franca_transform(
+  name = "capicxx_hello_world",
+  srcs = [
+    ":hello_world"
+  ],
+  gen = "//tools:capicxx_core_tools",
+  outputs = [
+    "org/example/CommonTypes.hpp",
+    "v1/org/example/HelloWorld.hpp",
+    "v1/org/example/HelloWorldProxy.hpp",
+    "v1/org/example/HelloWorldProxyBase.hpp",
+    "v1/org/example/HelloWorldStub.hpp",
   ]
 )
