@@ -1,6 +1,22 @@
 load(":providers.bzl", "FrancaLibInfo")
 
 def _franca_transform_impl(ctx):
+  inputs = []
+  for franca_lib in ctx.attr.srcs:
+    for franca_src in franca_lib[FrancaLibInfo].srcs:
+      for file in franca_src.files.to_list():
+        inputs.append(file)
+
+  args = ctx.actions.args()
+  args.add_all(ctx.attr.args)
+  args.add_all(inputs)
+  ctx.actions.run(
+    inputs = inputs,
+    outputs = ctx.outputs.outputs,
+    arguments = [args],
+    progress_message = "Generating target language code for %s" % inputs,
+    executable = ctx.executable.gen,
+  )
   return
 
 franca_transform = rule(

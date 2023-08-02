@@ -1,9 +1,13 @@
+genrule(
+  name = "gen_tool_paths",
+  outs = ["tool_paths.txt"],
+  srcs = ["@com_github_covesa_capicxx_core_tools//:generator_bin"],
+  cmd = "echo $(locations @com_github_covesa_capicxx_core_tools//:generator_bin) > $@",
+)
+
 sh_binary(
   name = "capicxx_core_tools",
   srcs = ["capicxx_core_tools.sh"],
-  data = [
-    "@com_github_covesa_capicxx_core_tools//:generator_bin",
-  ],
-  args = ["$(locations @com_github_covesa_capicxx_core_tools//:generator_bin)"],
+  data = ["@com_github_covesa_capicxx_core_tools//:generator_bin", ":gen_tool_paths"],
   visibility = ["//visibility:public"]
 )

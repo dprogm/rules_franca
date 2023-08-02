@@ -12,11 +12,11 @@ filegroup(
 filegroup(
   name = "generator_bin",
   srcs = select({
-    "@bazel_tools//src/conditions:linux_x86_64": [    
+    "@bazel_tools//src/conditions:linux_x86_64": [
       "commonapi-core-generator-linux-x86_64",
       "commonapi-core-generator-linux-x86_64.ini",
     ],
-    "@bazel_tools//src/conditions:windows_x64": [    
+    "@bazel_tools//src/conditions:windows_x64": [
       "commonapi-core-generator-windows-x86_64.exe",
       "commonapi-core-generator-windows-x86_64.ini",
     ],
