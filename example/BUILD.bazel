@@ -13,6 +13,9 @@ franca_transform(
   srcs = [
     ":hello_world"
   ],
+  args = [
+    "-sk"
+  ],
   gen = "//tools:capicxx_core_tools",
   outputs = [
     "org/example/CommonTypes.hpp",
@@ -20,5 +23,6 @@ franca_transform(
     "v1/org/example/HelloWorldProxy.hpp",
     "v1/org/example/HelloWorldProxyBase.hpp",
     "v1/org/example/HelloWorldStub.hpp",
+    "v1/org/example/HelloWorldStubDefault.hpp",
   ]
 )

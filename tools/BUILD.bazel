@@ -4,15 +4,17 @@ tool_path_wrapper(
   name = "capicxx_core_tools",
   binary = ":capicxx_core_tools_impl",
   tools = [
-    "@com_github_covesa_capicxx_core_tools//:generator_bin"
+    "@com_github_covesa_capicxx_core_tools//:generator_bin",
   ],
-  visibility = ["//visibility:public"]
+  visibility = [
+    "//visibility:public",
+  ]
 )
 
 sh_binary(
   name = "capicxx_core_tools_impl",
   srcs = ["capicxx_core_tools.sh"],
   data = [
-    "@com_github_covesa_capicxx_core_tools//:generator_bin"
+    "@com_github_covesa_capicxx_core_tools//:generator_bin",
   ],
 )

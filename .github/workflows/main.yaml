@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: bazelbuild/setup-bazelisk@v2
-      - run: bazel run //tools:capicxx_core_tools -- --dest $(pwd)/dist $(pwd)/example/interface/HelloWorld.fidl
+      - run: bazel build //example:capicxx_hello_world

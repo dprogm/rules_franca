@@ -1,29 +1,15 @@
-filegroup(
-  name = "generator_pieces",
-  srcs = glob([
-    "configuration/**",
-    "features/**",
-    "plugins/**",
-  ]) + [
-    "artifacts.xml",
+java_binary(
+  name = "generator_bin",
+  main_class = "org.eclipse.equinox.launcher.Main",
+  runtime_deps = [
+    ":generator_jars"
   ],
+  visibility = [ "//visibility:public" ],
 )
 
-filegroup(
-  name = "generator_bin",
-  srcs = select({
-    "@bazel_tools//src/conditions:linux_x86_64": [
-      "commonapi-core-generator-linux-x86_64",
-      "commonapi-core-generator-linux-x86_64.ini",
-    ],
-    "@bazel_tools//src/conditions:windows_x64": [
-      "commonapi-core-generator-windows-x86_64.exe",
-      "commonapi-core-generator-windows-x86_64.ini",
-    ],
-  }),
-  # For some reason all the generator pieces
-  # are not required for executing the binary
-  # TODO Clarify why they are bundled.
-  data = [":generator_pieces"],
-  visibility = [ "//visibility:public" ],
+java_import(
+  name = "generator_jars",
+  jars = glob([
+    "plugins/*.jar"
+  ])
 )

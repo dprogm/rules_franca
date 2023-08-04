@@ -1,3 +1,3 @@
 #!/bin/bash
 
-$1 "${@:2}"
+$2 -configuration . -data . --dest "$3" "${@:4}"

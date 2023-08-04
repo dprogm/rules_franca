@@ -6,9 +6,13 @@ def _franca_transform_impl(ctx):
     for franca_src in franca_lib[FrancaLibInfo].srcs:
       for file in franca_src.files.to_list():
         inputs.append(file)
-
   args = ctx.actions.args()
+  # Arg #1 refers to the destination directory of the outputs
+  args.add("%s/%s" % (ctx.genfiles_dir.path, ctx.label.package))
+  # Pass all user provided args next, these are the generator
+  # specific arguments.
   args.add_all(ctx.attr.args)
+  # The input files are usually positional args for the generator
   args.add_all(inputs)
   ctx.actions.run(
     inputs = inputs,
@@ -39,4 +43,5 @@ franca_transform = rule(
       doc = "All expected files that should be produced by the generator.",
     ),
   },
+  output_to_genfiles = True,
 )
