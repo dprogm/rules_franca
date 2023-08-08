@@ -8,6 +8,17 @@ franca_library(
   ]
 )
 
+franca_library(
+  name = "hello_world_someip_depl",
+  srcs = [
+    "interface/HelloWorld.fdepl",
+    "types/CommonTypes.fdepl",
+  ],
+  deps = [
+    ":hello_world",
+  ]
+)
+
 franca_transform(
   name = "capicxx_hello_world",
   srcs = [
@@ -24,5 +35,23 @@ franca_transform(
     "v1/org/example/HelloWorldProxyBase.hpp",
     "v1/org/example/HelloWorldStub.hpp",
     "v1/org/example/HelloWorldStubDefault.hpp",
+  ]
+)
+
+franca_transform(
+  name = "capicxx_hello_world_someip_binding",
+  srcs = [
+    ":hello_world_someip_depl"
+  ],
+  gen = "//tools/someip:capicxx_someip_tools",
+  outputs = [
+    "org/example/CommonTypesSomeIPDeployment.hpp",
+    "org/example/CommonTypesSomeIPDeployment.cpp",
+    "v1/org/example/HelloWorldSomeIPDeployment.hpp",
+    "v1/org/example/HelloWorldSomeIPDeployment.cpp",
+    "v1/org/example/HelloWorldSomeIPProxy.hpp",
+    "v1/org/example/HelloWorldSomeIPProxy.cpp",
+    "v1/org/example/HelloWorldSomeIPStubAdapter.hpp",
+    "v1/org/example/HelloWorldSomeIPStubAdapter.cpp",
   ]
 )

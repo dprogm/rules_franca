@@ -14,3 +14,4 @@ jobs:
       - uses: actions/checkout@v3
       - uses: bazelbuild/setup-bazelisk@v2
       - run: bazel build //example:capicxx_hello_world
+      - run: bazel run //tools/someip:capicxx_someip_tools -- $(pwd)/dist $(pwd)/example/interface/HelloWorld.fdepl

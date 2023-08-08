@@ -1,0 +1,20 @@
+load("//tools:tool_path_wrapper.bzl", "tool_path_wrapper")
+
+tool_path_wrapper(
+  name = "capicxx_someip_tools",
+  binary = ":capicxx_someip_tools_impl",
+  tools = [
+    "@com_github_covesa_capicxx_someip_tools//:generator_bin",
+  ],
+  visibility = [
+    "//visibility:public",
+  ]
+)
+
+sh_binary(
+  name = "capicxx_someip_tools_impl",
+  srcs = ["capicxx_someip_tools.sh"],
+  data = [
+    "@com_github_covesa_capicxx_someip_tools//:generator_bin",
+  ],
+)
