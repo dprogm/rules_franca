@@ -38,6 +38,19 @@ franca_transform(
   ]
 )
 
+cc_library(
+  name = "capicxx_hello_world_api",
+  hdrs = [":capicxx_hello_world"],
+  deps = ["@com_github_covesa_capicxx_core_runtime//:capicxx_core_runtime"],
+  includes = ["."],
+)
+
+cc_binary(
+  name = "client",
+  srcs = ["client.cpp"],
+  deps = [":capicxx_hello_world_api"],
+)
+
 franca_transform(
   name = "capicxx_hello_world_someip_binding",
   srcs = [
