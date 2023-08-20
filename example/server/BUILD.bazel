@@ -1,0 +1,5 @@
+cc_binary(
+  name = "server",
+  srcs = ["server.cpp"],
+  deps = ["//example/api:capicxx_hello_world_api"],
+)

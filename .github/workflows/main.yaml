@@ -7,11 +7,12 @@ on:
     branches: [main]
 
 jobs:
-
   build-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: bazelbuild/setup-bazelisk@v2
-      - run: bazel build //example:capicxx_hello_world
-      - run: bazel build //example:capicxx_hello_world_someip_binding
+      - run: bazel build //example/api:capicxx_hello_world_api
+      - run: bazel build //example/api:capicxx_hello_world_someip_binding_lib
+      - run: bazel build //example/client
+      - run: bazel build //example/server

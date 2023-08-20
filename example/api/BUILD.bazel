@@ -43,12 +43,7 @@ cc_library(
   hdrs = [":capicxx_hello_world"],
   deps = ["@com_github_covesa_capicxx_core_runtime//:capicxx_core_runtime"],
   includes = ["."],
-)
-
-cc_binary(
-  name = "client",
-  srcs = ["client.cpp"],
-  deps = [":capicxx_hello_world_api"],
+  visibility = ["//visibility:public"]
 )
 
 franca_transform(
@@ -67,4 +62,14 @@ franca_transform(
     "v1/org/example/HelloWorldSomeIPStubAdapter.hpp",
     "v1/org/example/HelloWorldSomeIPStubAdapter.cpp",
   ]
+)
+
+cc_library(
+  name = "capicxx_hello_world_someip_binding_lib",
+  srcs = [":capicxx_hello_world_someip_binding"],
+  deps = [
+    "capicxx_hello_world_api",
+    "@com_github_covesa_capicxx_someip_runtime//:capicxx_someip_runtime"
+  ],
+  visibility = ["//visibility:public"]
 )
