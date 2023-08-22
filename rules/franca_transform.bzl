@@ -28,7 +28,6 @@ def _franca_transform_impl(ctx):
     progress_message = "Generating target language code for %s" % inputs,
     executable = ctx.executable.gen,
   )
-  return
 
 franca_transform = rule(
   implementation = _franca_transform_impl,

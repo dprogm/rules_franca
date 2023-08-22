@@ -1,1 +1,1 @@
-build --cxxopt=-std=c++17
+build --cxxopt=-std=c++17 --experimental_cc_shared_library --compilation_mode=dbg

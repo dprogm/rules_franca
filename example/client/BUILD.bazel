@@ -1,5 +1,20 @@
 cc_binary(
-  name = "client",
+  name = "client_exe",
   srcs = ["client.cpp"],
   deps = ["//example/api:capicxx_hello_world_api"],
+)
+
+sh_binary(
+  name = "client",
+  srcs = ["client.sh"],
+  data = [
+    ":client_exe",
+    "//example/config:commonapi.ini",
+    "//example/api:shared_lib"
+  ],
+  args = [
+    "$(location :client_exe)",
+    "$(location //example/config:commonapi.ini)",
+    "$(location //example/api:shared_lib)"
+  ]
 )
