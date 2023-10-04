@@ -29,7 +29,7 @@ franca_transform(
   ],
   gen = "//tools:capicxx_core_tools",
   outputs = [
-    "org/example/CommonTypes.hpp",
+    "v1/org/example/CommonTypes.hpp",
     "v1/org/example/HelloWorld.hpp",
     "v1/org/example/HelloWorldProxy.hpp",
     "v1/org/example/HelloWorldProxyBase.hpp",
@@ -53,8 +53,8 @@ franca_transform(
   ],
   gen = "//tools/someip:capicxx_someip_tools",
   outputs = [
-    "org/example/CommonTypesSomeIPDeployment.hpp",
-    "org/example/CommonTypesSomeIPDeployment.cpp",
+    "v1/org/example/CommonTypesSomeIPDeployment.hpp",
+    "v1/org/example/CommonTypesSomeIPDeployment.cpp",
     "v1/org/example/HelloWorldSomeIPDeployment.hpp",
     "v1/org/example/HelloWorldSomeIPDeployment.cpp",
     "v1/org/example/HelloWorldSomeIPProxy.hpp",
@@ -71,13 +71,15 @@ cc_library(
     "capicxx_hello_world_api",
     "@com_github_covesa_capicxx_someip_runtime//:capicxx_someip_runtime"
   ],
+  #linkopts = ["-Wl,--whole-archive"],
   visibility = ["//visibility:public"]
 )
 
 cc_shared_library(
-  name = "shared_lib",
+  name = "binding_shared_lib",
   deps = [
     ":capicxx_hello_world_someip_binding_lib",
   ],
+  user_link_flags = ["-Wl,--no-as-needed"],
   visibility = ["//visibility:public"]
 )

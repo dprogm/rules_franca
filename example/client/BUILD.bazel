@@ -1,20 +1,28 @@
 cc_binary(
   name = "client_exe",
-  srcs = ["client.cpp"],
+  srcs = [
+    "client.cpp",
+    "@com_github_covesa_capicxx_core_runtime//:shared_lib"
+  ],
   deps = ["//example/api:capicxx_hello_world_api"],
 )
 
 sh_binary(
   name = "client",
-  srcs = ["client.sh"],
+  srcs = ["//example/common:run.sh"],
   data = [
     ":client_exe",
     "//example/config:commonapi.ini",
-    "//example/api:shared_lib"
+    "//example/api:binding_shared_lib",
+    "@com_github_covesa_vsomeip//:vsomeip_cfg_shared_lib_patched",
+    "@com_github_covesa_vsomeip//:vsomeip_sd_shared_lib_patched"
   ],
   args = [
     "$(location :client_exe)",
     "$(location //example/config:commonapi.ini)",
-    "$(location //example/api:shared_lib)"
+    "$(location //example/api:binding_shared_lib)",
+    "$(location @com_github_covesa_vsomeip//:vsomeip_cfg_shared_lib_patched)",
+    "$(location @com_github_covesa_vsomeip//:vsomeip_sd_shared_lib_patched)",
+    "ClientExample"
   ]
 )

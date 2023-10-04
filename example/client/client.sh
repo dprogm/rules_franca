@@ -1,3 +1,5 @@
 export COMMONAPI_CONFIG=$2
 export LD_LIBRARY_PATH=$(dirname $3):$LD_LIBRARY_PATH
-gdb ./$1
+export LD_LIBRARY_PATH=$(dirname $4):$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$(dirname $5):$LD_LIBRARY_PATH
+./$1
