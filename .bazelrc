@@ -1,1 +1,1 @@
-build --cxxopt=-std=c++17 --experimental_cc_shared_library --compilation_mode=dbg
+build --cxxopt=-std=c++17 --enable_bzlmod --incompatible_enable_cc_toolchain_resolution
